@@ -38,8 +38,120 @@ public class Board {
 		apples = templateBoard.apples.clone();
 	}
 	
+	public void setN(int a) {
+		N = a;
+	}
+	
+	public void setM(int a) {
+		M = a;
+	}
+	
+	public boolean setTiles(int[][] a) {
+		if(a.length != tiles.length || a[0].length != tiles[0].length) {
+			System.out.println("Error! Arrays have different size!");
+			return false;
+		}		
+		tiles = a;
+		return true;
+	}
+	
+	public boolean setSnakes(Snake[] a) {
+		if(a.length != snakes.length) {
+			System.out.println("Error! Arrays have different size!");
+			return false;
+		}		
+		snakes = a;
+		return true;
+	}
+	
+	public boolean setLadders(Ladder[] a) {
+		if(a.length != ladders.length) {
+			System.out.println("Error! Arrays have different size!");
+			return false;
+		}		
+		ladders = a;
+		return true;
+	}
+	
+	public boolean setApples(Apple[] a) {
+		if(a.length != apples.length) {
+			System.out.println("Error! Arrays have different size!");
+			return false;
+		}		
+		apples = a;
+		return true;
+	}
+	
 	public void createBoard() {
 		
+		for(int i = 0; i < tiles.length; i++) {
+			for(int j = 0; j < tiles[i].length; j++) {
+				tiles[i][j] = (i+1)*(j+1);
+			}
+		}
+		
+		for(int i = 0; i < snakes.length;  i++) {
+			int headId;
+			int tailId;
+			do {
+				tailId = (int)(Math.random() * N * M);
+			} while(tailId < N*M);
+			
+			headId = (int)(tailId + Math.random() * ((N*M) - tailId));
+			//headId = tailId + random Number from 0 to max size(N*M) minus the tailId that we added to affirm that head>tail
+			
+			snakes[i] = new Snake(i, headId, tailId);
+		}
+		
+		for(int i = 0; i < ladders.length;  i++) {
+			int up;
+			int down;
+			do {
+				down = (int)(Math.random() * N * M);
+			} while(down < N*M);
+			
+			up = (int)(down + Math.random() * ((N*M) - down));
+			
+			//I am expecting the constructor for the ladders from you Tommino
+			//When it's done delete the comments and uncomment the next line
+			//ladders[i] = new Ladder(i, up, down, false);
+		}
+		
+		//Initialize a random value for applepos and then loop through each snakeHead. 
+		//If applepos==snakeHead -> check = true -> do while loops again giving a different applepos
+		
+		for(int i = 0; i < apples.length; i++) {
+			int applePos;
+			boolean check = false;
+			do {
+				applePos = (int)Math.random() * N * M;
+				for(int j = 0; j < snakes.length; j++) {
+					if(snakes[j].headId == applePos)
+						check = true;
+				}
+			} while(check);
+		}
+	}
+	
+	public void createElementBoard() {
+		String[][] elementBoardSnakes = new String[N][M];
+		String[][] elementBoardLadders = new String[N][M];
+		String[][] elementBoardApples = new String[N][M];
+		
+		for(int i = 0; i < snakes.length; i++) {
+			int x = (int) snakes[i].headId / N;
+			int y = x * N
+			elementBoardSnakes
+			
+		}
 	}
 	
 }
+
+
+
+
+
+
+
+

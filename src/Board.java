@@ -17,8 +17,8 @@ public class Board {
 	
 	public Board(int n, int m, int numOfSnakes, int numOfLadders, int numOfApples) {
 		this.N = n;
-		this.N= m;
-		tiles = new int[N][M];
+		this.M= m;
+		tiles = new int[n][m];
 		snakes = new Snake[numOfSnakes];
 		ladders = new Ladder[numOfLadders];
 		apples = new Apple[numOfApples];
@@ -84,22 +84,33 @@ public class Board {
 	
 	public void createBoard() {
 		
-		for(int i = 0; i < tiles.length; i++) {
-			for(int j = 0; j < tiles[i].length; j++) {
-				tiles[i][j] = (i+1)*(j+1);
+		//Tiles Initialization
+		int counter = 1;
+		boolean flag = true;
+		for(int i = tiles.length - 1; i > -1; i--) {
+			if(flag) {
+				for(int j = 0; j < tiles[i].length; j++){
+					tiles[i][j] = counter++;
+					flag = false;
+				}
+			}
+			else{
+				for(int j = tiles[i].length - 1; j > -1; j--) {
+					tiles[i][j] = counter++;
+					flag = true;
+				}
 			}
 		}
 		
+		//Snake Initialization
 		for(int i = 0; i < snakes.length;  i++) {
 			int headId;
 			int tailId;
 			do {
 				tailId = (int)(Math.random() * N * M);
-			} while(tailId < N*M);
-			
-			headId = (int)(tailId + Math.random() * ((N*M) - tailId));
+			} while(tailId >= N*M);
+			headId = tailId + (int)(Math.random() * (N*M - tailId));
 			//headId = tailId + random Number from 0 to max size(N*M) minus the tailId that we added to affirm that head>tail
-			
 			snakes[i] = new Snake(i, headId, tailId);
 		}
 		
@@ -108,8 +119,7 @@ public class Board {
 			int down;
 			do {
 				down = (int)(Math.random() * N * M);
-			} while(down < N*M);
-			
+			} while(down >= N*M);
 			up = (int)(down + Math.random() * ((N*M) - down));
 			
 			//I am expecting the constructor for the ladders from you Tommino
@@ -130,6 +140,7 @@ public class Board {
 						check = true;
 				}
 			} while(check);
+			check = false;
 		}
 	}
 	
@@ -140,8 +151,8 @@ public class Board {
 		
 		for(int i = 0; i < snakes.length; i++) {
 			int x = (int) snakes[i].headId / N;
-			int y = x * N
-			elementBoardSnakes
+			int y = x * N;
+			//elementBoardSnakes
 			
 		}
 	}

@@ -149,12 +149,104 @@ public class Board {
 		String[][] elementBoardLadders = new String[N][M];
 		String[][] elementBoardApples = new String[N][M];
 		
+		//Finding the i,j with the help of the tiles 2-D array in order to position the snake heads
 		for(int i = 0; i < snakes.length; i++) {
-			int x = (int) snakes[i].headId / N;
-			int y = x * N;
-			//elementBoardSnakes
-			
+			for(int j = 0; j < M; j++) {
+				if( snakes[i].headId > j * M && snakes[i].headId <= (j+1) * M) {
+					for(int k = 0; k < M; k++) {
+						if(tiles[N-1-j][k] == snakes[i].headId) {
+							elementBoardSnakes[N-1-j][k] = "SH" + snakes[i].snakeId;
+						} 
+					}
+				}
+			}
 		}
+		
+		
+		//Finding the i,j with the help of the tiles 2-D array in order to position the snake tails
+		for(int i = 0; i < snakes.length; i++) {
+			for(int j = 0; j < M; j++) {
+				if( snakes[i].tailId > j * M && snakes[i].tailId <= (j+1) * M) {
+					for(int k = 0; k < M; k++) {
+						if(tiles[N-1-j][k] == snakes[i].tailId) {
+							elementBoardSnakes[N-1-j][k] = "ST" + snakes[i].snakeId;
+						} 
+					}
+				}
+			}
+		}
+		
+		
+		//Finding the i,j with the help of the tiles 2-D array in order to position the upLadderIds
+		for(int i = 0; i < ladders.length; i++) {
+			for(int j = 0; j < M; j++) {
+				if(ladders[i].upStepId > j * M && ladders[i].upStepId <= (j+1) * M) {
+					for(int k = 0; k < M; k++) {
+						if(tiles[N-1-j][k] == ladders[i].upStepId) {
+							elementBoardLadders[N-1-j][k] = "LU" + ladders[i].ladderId;
+						} 
+					}
+				}
+			}
+		}
+		
+		//Finding the i,j with the help of the tiles 2-D array in order to position the downLadderIds
+		for(int i = 0; i < ladders.length; i++) {
+			for(int j = 0; j < M; j++) {
+				if( ladders[i].downStepId > j * M && ladders[i].downStepId <= (j+1) * M) {
+					for(int k = 0; k < M; k++) {
+						if(tiles[N-1-j][k] == ladders[i].downStepId) {
+							elementBoardLadders[N-1-j][k] = "LD" + ladders[i].ladderId;
+						} 
+					}
+				}
+			}
+		}
+		
+		//Finding the i,j with the help of the tiles 2-D array in order to position the Apples
+		for(int i = 0; i < apples.length; i++) {
+			for(int j = 0; j < M; j++) {
+				if( apples[i].appleTileId > j * M && apples[i].appleTileId <= (j+1) * M) {
+					for(int k = 0; k < M; k++) {
+						if(tiles[N-1-j][k] == apples[i].appleTileId) {
+							char appleCharZero = apples[i].color.charAt(0);
+							String appleUpperCaseCharZero = String.valueOf(appleCharZero);
+							elementBoardApples[N-1-j][k] = "A" + appleUpperCaseCharZero.toUpperCase() + apples[i].appleId;
+						} 
+					}
+				}
+			}
+		}
+		
+		
+		//Printing elementBoard for Snakes, Ladders and Apples
+		for(int i = 0; i < elementBoardSnakes.length; i++) {
+			for(int j = 0; j < elementBoardSnakes[i].length; j++) {
+				if(elementBoardSnakes[i][j] == null)
+					elementBoardSnakes[i][j] = "_";
+				System.out.print(elementBoardSnakes[i][j] + " "); 
+			}
+			System.out.println();
+		}
+
+		for(int i = 0; i < elementBoardLadders.length; i++) {
+			for(int j = 0; j < elementBoardLadders[i].length; j++) {
+				if(elementBoardLadders[i][j] == "")
+					elementBoardLadders[i][j] = "_";
+				System.out.print(elementBoardLadders[i][j] + " "); 
+			}
+			System.out.println();
+		}
+		
+		for(int i = 0; i < elementBoardApples.length; i++) {
+			for(int j = 0; j < elementBoardApples[i].length; j++) {
+				if(elementBoardApples[i][j] == "")
+					elementBoardApples[i][j] = "_";
+				System.out.print(elementBoardApples[i][j] + " "); 
+			}
+			System.out.println();
+		}
+		
 	}
 	
 }

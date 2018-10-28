@@ -114,6 +114,7 @@ public class Board {
 			snakes[i] = new Snake(i, headId, tailId);
 		}
 		
+		//Ladder Initialization
 		for(int i = 0; i < ladders.length;  i++) {
 			int up;
 			int down;
@@ -122,9 +123,7 @@ public class Board {
 			} while(down >= N*M);
 			up = (int)(down + Math.random() * ((N*M) - down));
 			
-			//I am expecting the constructor for the ladders from you Tommino
-			//When it's done delete the comments and uncomment the next line
-			//ladders[i] = new Ladder(i, up, down, false);
+			ladders[i] = new Ladder(i, up, down, false);
 		}
 		
 		//Initialize a random value for applepos and then loop through each snakeHead. 
@@ -134,11 +133,24 @@ public class Board {
 			int applePos;
 			boolean check = false;
 			do {
-				applePos = (int)Math.random() * N * M;
+				applePos = (int)(Math.random() * N * M);
 				for(int j = 0; j < snakes.length; j++) {
 					if(snakes[j].headId == applePos)
 						check = true;
 				}
+				
+				String clr;
+				if(1 + (int)(1Math.random() * 2) % 2 == 0) {
+					clr = "red";
+				}
+				else {
+					clr = "black";
+				}
+				
+				int applePoints = (int)(Math.random() * 20);
+				
+				//Tommino, uncomment this line when you implement the Apple constructor
+				//apples[i] = new Apple(i, applePos, clr, applePoints);
 			} while(check);
 			check = false;
 		}
@@ -223,25 +235,30 @@ public class Board {
 		for(int i = 0; i < elementBoardSnakes.length; i++) {
 			for(int j = 0; j < elementBoardSnakes[i].length; j++) {
 				if(elementBoardSnakes[i][j] == null)
-					elementBoardSnakes[i][j] = "_";
+					elementBoardSnakes[i][j] = " _ ";
 				System.out.print(elementBoardSnakes[i][j] + " "); 
 			}
 			System.out.println();
 		}
+		
+		System.out.println();
+		System.out.println();
 
 		for(int i = 0; i < elementBoardLadders.length; i++) {
 			for(int j = 0; j < elementBoardLadders[i].length; j++) {
-				if(elementBoardLadders[i][j] == "")
-					elementBoardLadders[i][j] = "_";
+				if(elementBoardLadders[i][j] == null)
+					elementBoardLadders[i][j] = " _ ";
 				System.out.print(elementBoardLadders[i][j] + " "); 
 			}
 			System.out.println();
 		}
+		System.out.println();
+		System.out.println();
 		
 		for(int i = 0; i < elementBoardApples.length; i++) {
 			for(int j = 0; j < elementBoardApples[i].length; j++) {
-				if(elementBoardApples[i][j] == "")
-					elementBoardApples[i][j] = "_";
+				if(elementBoardApples[i][j] == null)
+					elementBoardApples[i][j] = " _ ";
 				System.out.print(elementBoardApples[i][j] + " "); 
 			}
 			System.out.println();

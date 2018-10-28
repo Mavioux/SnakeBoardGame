@@ -140,7 +140,7 @@ public class Board {
 				}
 				
 				String clr;
-				if(1 + (int)(1Math.random() * 2) % 2 == 0) {
+				if(1 + (int)(Math.random() * 2) % 2 == 0) {
 					clr = "red";
 				}
 				else {

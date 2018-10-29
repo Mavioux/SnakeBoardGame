@@ -135,7 +135,7 @@ public class Board {
 			do {
 				applePos = (int)(Math.random() * N * M);
 				for(int j = 0; j < snakes.length; j++) {
-					if(snakes[j].headId == applePos)
+					if(snakes[j].getHeadId() == applePos)
 						check = true;
 				}
 				
@@ -149,8 +149,8 @@ public class Board {
 				
 				int applePoints = (int)(Math.random() * 20);
 				
-				//Tommino, uncomment this line when you implement the Apple constructor
-				//apples[i] = new Apple(i, applePos, clr, applePoints);
+				
+				apples[i] = new Apple(i, applePos, clr, applePoints);
 			} while(check);
 			check = false;
 		}
@@ -164,10 +164,10 @@ public class Board {
 		//Finding the i,j with the help of the tiles 2-D array in order to position the snake heads
 		for(int i = 0; i < snakes.length; i++) {
 			for(int j = 0; j < M; j++) {
-				if( snakes[i].headId > j * M && snakes[i].headId <= (j+1) * M) {
+				if( snakes[i].getHeadId() > j * M && snakes[i].getHeadId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
-						if(tiles[N-1-j][k] == snakes[i].headId) {
-							elementBoardSnakes[N-1-j][k] = "SH" + snakes[i].snakeId;
+						if(tiles[N-1-j][k] == snakes[i].getHeadId()) {
+							elementBoardSnakes[N-1-j][k] = "SH" + snakes[i].getSnakeId();
 						} 
 					}
 				}
@@ -178,10 +178,10 @@ public class Board {
 		//Finding the i,j with the help of the tiles 2-D array in order to position the snake tails
 		for(int i = 0; i < snakes.length; i++) {
 			for(int j = 0; j < M; j++) {
-				if( snakes[i].tailId > j * M && snakes[i].tailId <= (j+1) * M) {
+				if( snakes[i].getTailId() > j * M && snakes[i].getTailId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
-						if(tiles[N-1-j][k] == snakes[i].tailId) {
-							elementBoardSnakes[N-1-j][k] = "ST" + snakes[i].snakeId;
+						if(tiles[N-1-j][k] == snakes[i].getTailId()) {
+							elementBoardSnakes[N-1-j][k] = "ST" + snakes[i].getSnakeId();
 						} 
 					}
 				}
@@ -192,10 +192,10 @@ public class Board {
 		//Finding the i,j with the help of the tiles 2-D array in order to position the upLadderIds
 		for(int i = 0; i < ladders.length; i++) {
 			for(int j = 0; j < M; j++) {
-				if(ladders[i].upStepId > j * M && ladders[i].upStepId <= (j+1) * M) {
+				if(ladders[i].getUpStepId() > j * M && ladders[i].getUpStepId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
-						if(tiles[N-1-j][k] == ladders[i].upStepId) {
-							elementBoardLadders[N-1-j][k] = "LU" + ladders[i].ladderId;
+						if(tiles[N-1-j][k] == ladders[i].getUpStepId()) {
+							elementBoardLadders[N-1-j][k] = "LU" + ladders[i].getLadderId();
 						} 
 					}
 				}
@@ -205,10 +205,10 @@ public class Board {
 		//Finding the i,j with the help of the tiles 2-D array in order to position the downLadderIds
 		for(int i = 0; i < ladders.length; i++) {
 			for(int j = 0; j < M; j++) {
-				if( ladders[i].downStepId > j * M && ladders[i].downStepId <= (j+1) * M) {
+				if( ladders[i].getDownStepId() > j * M && ladders[i].getDownStepId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
-						if(tiles[N-1-j][k] == ladders[i].downStepId) {
-							elementBoardLadders[N-1-j][k] = "LD" + ladders[i].ladderId;
+						if(tiles[N-1-j][k] == ladders[i].getDownStepId()) {
+							elementBoardLadders[N-1-j][k] = "LD" + ladders[i].getLadderId();
 						} 
 					}
 				}
@@ -220,10 +220,10 @@ public class Board {
 			for(int j = 0; j < M; j++) {
 				if( apples[i].getAppleTileId() > j * M && apples[i].getAppleTileId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
-						if(tiles[N-1-j][k] == apples[i].appleTileId) {
-							char appleCharZero = apples[i].color.charAt(0);
+						if(tiles[N-1-j][k] == apples[i].getAppleTileId()) {
+							char appleCharZero = apples[i].getColor().charAt(0);
 							String appleUpperCaseCharZero = String.valueOf(appleCharZero);
-							elementBoardApples[N-1-j][k] = "A" + appleUpperCaseCharZero.toUpperCase() + apples[i].appleId;
+							elementBoardApples[N-1-j][k] = "A" + appleUpperCaseCharZero.toUpperCase() + apples[i].getAppleId();
 						} 
 					}
 				}

@@ -58,9 +58,9 @@ public class Player {
 		return board;
 	}
 	
-	public int[] move(int id, int die) {
+	/*public int[] move(int id, int die) {
 		
-	}
+	}*/
 }
 
 

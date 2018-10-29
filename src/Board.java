@@ -218,7 +218,7 @@ public class Board {
 		//Finding the i,j with the help of the tiles 2-D array in order to position the Apples
 		for(int i = 0; i < apples.length; i++) {
 			for(int j = 0; j < M; j++) {
-				if( apples[i].appleTileId > j * M && apples[i].appleTileId <= (j+1) * M) {
+				if( apples[i].getAppleTileId() > j * M && apples[i].getAppleTileId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
 						if(tiles[N-1-j][k] == apples[i].appleTileId) {
 							char appleCharZero = apples[i].color.charAt(0);

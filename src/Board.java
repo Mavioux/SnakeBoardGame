@@ -136,11 +136,20 @@ public class Board {
 		for(int i = 0; i < snakes.length;  i++) {
 			int headId;
 			int tailId;
+			boolean snakeFlag;
 			do {
-				tailId = 1 + (int)(Math.random() * ((N * M) - 1));
-			} while(tailId > N*M);
-			headId = tailId + 1 + (int)(Math.random() * (N*M - tailId));
-			//headId = tailId + random Number from 1 to max size(N*M) minus the tailId that we added to affirm that head>tail
+				snakeFlag = false;
+				do {
+					tailId = 1 + (int)(Math.random() * ((N * M) - 1));
+				} while(tailId > N*M);
+				headId = tailId + 1 + (int)(Math.random() * (N*M - tailId));
+				//headId = tailId + random Number from 1 to max size(N*M) minus the tailId that we added to affirm that head>tail
+				for(int j = i - 1; j > -1; j--) {
+					if(snakes[j].tailId == tailId || snakes[j].headId == tailId || snakes[j].tailId == headId || snakes[j].headId == headId) {
+						snakeFlag = true;
+					}
+				}
+			} while(snakeFlag);
 			snakes[i] = new Snake(i, headId, tailId);
 		}
 		

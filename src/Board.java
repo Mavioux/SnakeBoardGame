@@ -102,7 +102,7 @@ public class Board {
 			return snakes;
 		}
 	
-	public Ladders[] getLadders(){
+	public Ladder[] getLadders(){
 		
 		return ladders;
 	}
@@ -137,10 +137,10 @@ public class Board {
 			int headId;
 			int tailId;
 			do {
-				tailId = (int)(Math.random() * N * M);
-			} while(tailId >= N*M);
-			headId = tailId + (int)(Math.random() * (N*M - tailId));
-			//headId = tailId + random Number from 0 to max size(N*M) minus the tailId that we added to affirm that head>tail
+				tailId = 1 + (int)(Math.random() * ((N * M) - 1));
+			} while(tailId > N*M);
+			headId = tailId + 1 + (int)(Math.random() * (N*M - tailId));
+			//headId = tailId + random Number from 1 to max size(N*M) minus the tailId that we added to affirm that head>tail
 			snakes[i] = new Snake(i, headId, tailId);
 		}
 		

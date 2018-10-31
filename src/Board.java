@@ -46,6 +46,16 @@ public class Board {
 		M = a;
 	}
 	
+	public int getN() {
+		
+		return N;
+	}
+	
+	public int getM() {
+		
+		return M;
+	}
+	
 	public boolean setTiles(int[][] a) {
 		if(a.length != tiles.length || a[0].length != tiles[0].length) {
 			System.out.println("Error! Arrays have different size!");
@@ -80,6 +90,26 @@ public class Board {
 		}		
 		apples = a;
 		return true;
+	}
+	
+	public int[][] getTiles(){
+		
+		return tiles;
+	}
+	
+	public Snake[] getSnakes(){
+			
+			return snakes;
+		}
+	
+	public Ladders[] getLadders(){
+		
+		return ladders;
+	}
+	
+	public Apple[] getApples(){
+		
+		return apples;
 	}
 	
 	public void createBoard() {

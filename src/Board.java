@@ -141,11 +141,11 @@ public class Board {
 				snakeFlag = false;
 				do {
 					tailId = 1 + (int)(Math.random() * ((N * M) - 1));
-				} while(tailId > N*M);
+				} while(tailId >= N*M);
 				headId = tailId + 1 + (int)(Math.random() * (N*M - tailId));
 				//headId = tailId + random Number from 1 to max size(N*M) minus the tailId that we added to affirm that head>tail
 				for(int j = i - 1; j > -1; j--) {
-					if(snakes[j].tailId == tailId || snakes[j].headId == tailId || snakes[j].tailId == headId || snakes[j].headId == headId) {
+					if(snakes[j].getTailId() == tailId || snakes[j].getHeadId() == tailId || snakes[j].getTailId() == headId || snakes[j].getHeadId() == headId) {
 						snakeFlag = true;
 					}
 				}
@@ -158,11 +158,19 @@ public class Board {
 			int up;
 			int down;
 			do {
-				down = (int)(Math.random() * N * M);
-			} while(down >= N*M);
-			up = (int)(down + Math.random() * ((N*M) - down));
-			
-			ladders[i] = new Ladder(i, up, down, false);
+				flag = false;
+				do {
+					down = 1 + (int)(Math.random() * ((N * M) -1));
+				} while(down >= N*M);
+				up = 1 + (int)(down + Math.random() * ((N*M) - down));
+				
+				for(int j = i - 1; j < -1; j--) {
+					if(ladders[i].getUpStepId() == up || ladders[i].getUpStepId() == down || ladders[i].getDownStepId() == up || ladders[i].getDownStepId() == down)
+						flag = true;
+				}
+			} while(flag);
+				
+				ladders[i] = new Ladder(i, up, down, false);
 		}
 		
 		//Initialize a random value for applepos and then loop through each snakeHead. 
@@ -172,14 +180,14 @@ public class Board {
 			int applePos;
 			boolean check = false;
 			do {
-				applePos = (int)(Math.random() * N * M);
+				applePos = 1 + (int)(Math.random() * N * M);
 				for(int j = 0; j < snakes.length; j++) {
 					if(snakes[j].getHeadId() == applePos)
 						check = true;
 				}
 				
 				String clr;
-				if(1 + (int)(Math.random() * 2) % 2 == 0) {
+				if((int)(Math.random() * 2) % 2 == 0) {
 					clr = "red";
 				}
 				else {

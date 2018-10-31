@@ -58,9 +58,32 @@ public class Player {
 		return board;
 	}
 	
-	/*public int[] move(int id, int die) {
+	public void move(int id, int dice) {
+		int tileNow = id + dice;
+		int i, j;
 		
-	}*/
+		i = board.getN() - 1 -(int)((tileNow-1) / board.getM());
+		
+		if(board.getN() % 2 == 0) {
+			if(i % 2 != 0) {
+				j = tileNow -(board.getM()*board.getN() - (i+1)*board.getM()) - 1;
+			}
+			else {
+				j = board.getM() - (tileNow - (board.getN()*board.getM() - (i+1)*board.getM()));
+			}
+		}
+		else {
+			if(i % 2 != 0) {
+				j = board.getM() - (tileNow - (board.getN()*board.getM() - (i+1)*board.getM()));
+			}
+			else {
+				j = tileNow -(board.getM()*board.getN() - (i+1)*board.getM()) - 1;
+			}
+		}
+		
+		System.out.println(i + "," + j);
+			
+	}
 }
 
 

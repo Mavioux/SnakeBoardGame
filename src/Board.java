@@ -210,7 +210,7 @@ public class Board {
 		
 		//Finding the i,j with the help of the tiles 2-D array in order to position the snake heads
 		for(int i = 0; i < snakes.length; i++) {
-			for(int j = 0; j < M; j++) {
+			for(int j = 0; j < N; j++) {
 				if( snakes[i].getHeadId() > j * M && snakes[i].getHeadId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
 						if(tiles[N-1-j][k] == snakes[i].getHeadId()) {
@@ -224,7 +224,7 @@ public class Board {
 		
 		//Finding the i,j with the help of the tiles 2-D array in order to position the snake tails
 		for(int i = 0; i < snakes.length; i++) {
-			for(int j = 0; j < M; j++) {
+			for(int j = 0; j < N; j++) {
 				if( snakes[i].getTailId() > j * M && snakes[i].getTailId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
 						if(tiles[N-1-j][k] == snakes[i].getTailId()) {
@@ -238,7 +238,7 @@ public class Board {
 		
 		//Finding the i,j with the help of the tiles 2-D array in order to position the upLadderIds
 		for(int i = 0; i < ladders.length; i++) {
-			for(int j = 0; j < M; j++) {
+			for(int j = 0; j < N; j++) {
 				if(ladders[i].getUpStepId() > j * M && ladders[i].getUpStepId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
 						if(tiles[N-1-j][k] == ladders[i].getUpStepId()) {
@@ -251,7 +251,7 @@ public class Board {
 		
 		//Finding the i,j with the help of the tiles 2-D array in order to position the downLadderIds
 		for(int i = 0; i < ladders.length; i++) {
-			for(int j = 0; j < M; j++) {
+			for(int j = 0; j < N; j++) {
 				if( ladders[i].getDownStepId() > j * M && ladders[i].getDownStepId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
 						if(tiles[N-1-j][k] == ladders[i].getDownStepId()) {
@@ -264,7 +264,7 @@ public class Board {
 		
 		//Finding the i,j with the help of the tiles 2-D array in order to position the Apples
 		for(int i = 0; i < apples.length; i++) {
-			for(int j = 0; j < M; j++) {
+			for(int j = 0; j < N; j++) {
 				if( apples[i].getAppleTileId() > j * M && apples[i].getAppleTileId() <= (j+1) * M) {
 					for(int k = 0; k < M; k++) {
 						if(tiles[N-1-j][k] == apples[i].getAppleTileId()) {

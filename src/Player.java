@@ -58,9 +58,71 @@ public class Player {
 		return board;
 	}
 	
-	/*public int[] move(int id, int die) {
+	public int[] move(int id, int dice) {
+		int tileNow = id + dice;
 		
-	}*/
+		int snakeBites = 0;
+		int laddersUsed = 0;
+		int redApplesEaten = 0;
+		int blackApplesEaten = 0;
+		int[] arrayReturned = new int[5];
+		
+		// Search if tileNow == SnakeHead
+		for(int i=0; i<board.snakes.length; i++) {
+			if(board.snakes[i].getHeadId() == tileNow) {
+				snakeBites++;
+				tileNow = board.snakes[i].getTailId();
+				System.out.println("A little snake bit you!");
+				break;
+			}	
+		}
+		
+		// Search if tileNow == LadderUp
+		for(int i=0; i<board.ladders.length; i++) {
+			if(board.ladders[i].getDownStepId() == tileNow) {
+				laddersUsed++;
+				tileNow = board.ladders[i].getUpStepId();
+				System.out.println("Nice, you got up, but not in the sky lol!");
+				break;
+			}
+		}
+		
+		// Search if tileNow = appleTileId
+		for(int i=0; i<board.apples.length; i++) {
+			if(board.apples[i].getAppleTileId() == tileNow) {
+				switch(board.apples[i].getColor()) {
+				
+					case "red":
+						score += board.apples[i].getPoints();
+						redApplesEaten++;
+						System.out.println("You ate a red apple. You earned " + board.apples[i].getPoints() + " points.");
+						board.apples[i].setAppleTileId(-100);
+						break;
+					
+					
+					case "black":
+						score -= board.apples[i].getPoints();
+						blackApplesEaten++;
+						System.out.println("You ate a black apple... You lost " + board.apples[i].getPoints() + " points.");
+						board.apples[i].setAppleTileId(-100);
+						break;
+						
+					default:
+						System.out.println("Apples are red or black!");
+				}
+			}
+		}
+		
+		arrayReturned[0] = tileNow;
+		arrayReturned[1] = snakeBites;
+		arrayReturned[2] = laddersUsed;
+		arrayReturned[3] = redApplesEaten;
+	    arrayReturned[4] = blackApplesEaten;
+	    
+	    return arrayReturned;
+		
+		
+		}
 }
 
 

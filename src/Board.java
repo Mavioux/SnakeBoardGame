@@ -164,8 +164,8 @@ public class Board {
 				} while(down >= N*M);
 				up = 1 + (int)(down + Math.random() * ((N*M) - down));
 				
-				for(int j = i - 1; j < -1; j--) {
-					if(ladders[i].getUpStepId() == up || ladders[i].getUpStepId() == down || ladders[i].getDownStepId() == up || ladders[i].getDownStepId() == down)
+				for(int j = i - 1; j > -1; j--) {
+					if(ladders[j].getUpStepId() == up || ladders[j].getUpStepId() == down || ladders[j].getDownStepId() == up || ladders[j].getDownStepId() == down)
 						flag = true;
 				}
 			} while(flag);
@@ -184,6 +184,12 @@ public class Board {
 				for(int j = 0; j < snakes.length; j++) {
 					if(snakes[j].getHeadId() == applePos)
 						check = true;
+				}
+				
+				for(int k = i - 1; k > -1; k--) {
+					if(apples[k].getAppleTileId() == applePos) {
+						check = true;
+					}
 				}
 				
 				String clr;

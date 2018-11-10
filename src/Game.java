@@ -23,7 +23,7 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
-		Board gameBoard = new Board(10, 10, 3, 3, 6);
+		Board gameBoard = new Board(20, 10, 3, 3, 6);
 		gameBoard.createBoard();
 		gameBoard.createElementBoard();
 		Player mavioux = new Player(1, "Mavioux", 0, gameBoard);

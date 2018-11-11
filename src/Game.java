@@ -33,7 +33,12 @@ public class Game {
 		System.out.println();
 		for(int i = 0; i < gameBoard.tiles.length; i++) {
 			for(int j = 0; j < gameBoard.tiles[i].length; j++) {
-				System.out.print(gameBoard.tiles[i][j] + " ");
+				if(gameBoard.tiles[i][j] < 10) 
+					System.out.print("  " + gameBoard.tiles[i][j] + " ");
+				else if(gameBoard.tiles[i][j] < 100)
+					System.out.print(" " + gameBoard.tiles[i][j] + " ");
+				else 
+					System.out.print(gameBoard.tiles[i][j] + " ");
 			}
 			System.out.println();
 		}

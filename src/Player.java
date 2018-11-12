@@ -82,7 +82,7 @@ public class Player {
 			if(board.ladders[i].getDownStepId() == tileNow) {
 				laddersUsed++;
 				tileNow = board.ladders[i].getUpStepId();
-				System.out.println("Nice, you got up, but not in the sky lol!");
+				System.out.println("Lucky you! You found a ladder.");
 				break;
 			}
 		}

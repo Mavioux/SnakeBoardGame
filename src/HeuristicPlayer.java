@@ -1,5 +1,4 @@
-//Marios Pakas 9498 6985985853 mariospakas@ece.auth.gr
-//Thomas Mpoufikos 9360 6940776418 mpothogeo@ece.auth.gr
+
 
 import java.util.ArrayList;
 
